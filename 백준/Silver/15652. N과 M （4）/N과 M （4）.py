@@ -1,4 +1,4 @@
-from itertools import combinations_with_replacement, permutations
+from itertools import combinations_with_replacement
 
 n, m = map(int,input().split())
 
