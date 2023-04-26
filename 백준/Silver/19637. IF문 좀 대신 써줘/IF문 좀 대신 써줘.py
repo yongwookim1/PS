@@ -1,6 +1,16 @@
 import sys
-from bisect import bisect_left
 input = sys.stdin.readline
+
+def bs(arr: list, x) -> int:
+    start = 0
+    end = len(arr) - 1
+    while start < end:
+        mid = (start+end) // 2
+        if arr[mid] < x:
+            start = mid + 1
+        else:
+            end = mid
+    return start
 
 n, m = map(int,input().split())
 title_list = []
@@ -13,4 +23,4 @@ for _ in range(n):
 
 for i in range(m):
     input_power = int(input())
-    print(title_list[bisect_left(score_list, input_power)])
+    print(title_list[bs(score_list, input_power)])
