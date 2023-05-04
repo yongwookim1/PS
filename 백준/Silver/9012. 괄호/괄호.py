@@ -14,8 +14,6 @@ for i in range(int(input())):
             else:
                 if stack.pop() == '(':
                     pass
-                else:
-                    stack.append(i)
     else:
         if not stack:
             print("YES")
