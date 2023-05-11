@@ -1,11 +1,18 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
 l = [int(input()) for i in range(n)]
+stack = []
 
-st = 1
-m = l[-1]
-for i in l[:-1][::-1]:
-    if i > m:
-        m = i
+st = 0
+for i in l[::-1]:
+    if not stack:
+        stack.append(i)
         st += 1
+    else:
+        if stack[-1] < i:
+            stack.append(i)
+            st += 1
 
 print(st)
