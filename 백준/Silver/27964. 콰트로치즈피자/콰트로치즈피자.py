@@ -1,12 +1,10 @@
 n = input()
 
-c = list(input().split())
-nc = []
-for i in c:
-    if len(i) < 6:
-        pass
-    elif i[-6:] == 'Cheese':
-        nc.append(i)
+c = {i for i in input().split()}
 
-nc = list(set(nc))
-print('yummy' if len(nc) >= 4 else 'sad')
+ct = 0
+for i in c:
+    if i.endswith('Cheese'):
+        ct += 1
+
+print('yummy' if ct >= 4 else 'sad')
