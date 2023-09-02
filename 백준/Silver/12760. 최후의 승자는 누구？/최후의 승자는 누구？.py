@@ -23,8 +23,9 @@ for k in c:
         score[m] += 1
 
 r = []
+ms = max(score)
 for idx, n in enumerate(score, 1):
-    if max(score) == n:
+    if ms == n:
         r.append(idx)
 
 print(*r)
