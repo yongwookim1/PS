@@ -1,10 +1,10 @@
 from bisect import bisect_left, bisect_right
 
 
-def calCountsByRange(nums, left_value, right_value):
-    r_i = bisect_right(nums, right_value)
-    l_i = bisect_left(nums, left_value)
-    return r_i - l_i
+def calbi(arr, left, right):
+    r = bisect_right(arr, right)
+    l = bisect_left(arr, left)
+    return r - l
 
 
 def fibo(n):
@@ -20,5 +20,5 @@ while True:
     a, b = map(int, input().split())
     if a == 0 and b == 0:
         break
-    f = fibo(1000)
-    print(calCountsByRange(f, a, b))
+    f = fibo(500)
+    print(calbi(f, a, b))
