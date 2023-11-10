@@ -1,20 +1,21 @@
-n, m = map(int,input().split())
-l = list(map(int,input().split()))
+n, m = map(int, input().split())
+
+trees = list(map(int, input().split()))
 
 start = 0
-end = max(l)
-
-
+end = max(trees)
 while start <= end:
-    mid = (start+end) // 2
-    total = 0
-    for tree in l:
-        if tree > mid:
-            total += (tree - mid)
-    if total < m:
-        end = mid - 1
-    else:
+    mid = (start + end) // 2
+
+    s = 0
+    for i in trees:
+        if i > mid:
+            s += i - mid
+
+    if s >= m:
         res = mid
         start = mid + 1
+    else:
+        end = mid - 1
 
 print(res)
