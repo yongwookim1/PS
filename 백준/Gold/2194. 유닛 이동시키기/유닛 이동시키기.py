@@ -18,24 +18,24 @@ if n < a or m < b:
 queue = deque()
 queue.append((start1 - 1, start2 - 1))
 
-if 0 <= start1 - 1 < n - (a - 1) and 0 <= start2 - 1 < m - (b - 1):
-    pass
-else:
-    print(-1)
-    exit()
+# if 0 <= start1 - 1 < n - (a - 1) and 0 <= start2 - 1 < m - (b - 1):
+#     pass
+# else:
+#     print(-1)
+#     exit()
 
-if (
-    graph[start1 - 1][start2 - 1] != 0
-    or graph[start1 - 1 + (a - 1)][start2 - 1] != 0
-    or graph[start1 - 1][start2 - 1 + (b - 1)] != 0
-    or graph[start1 - 1 + (a - 1)][start2 - 1 + (b - 1)] != 0
-):
-    print(-1)
-    exit()
+# if (
+#     graph[start1 - 1][start2 - 1] != 0
+#     or graph[start1 - 1 + (a - 1)][start2 - 1] != 0
+#     or graph[start1 - 1][start2 - 1 + (b - 1)] != 0
+#     or graph[start1 - 1 + (a - 1)][start2 - 1 + (b - 1)] != 0
+# ):
+#     print(-1)
+#     exit()
 
 
-dx = [1, 0, -1, 0, 0]
-dy = [0, 1, 0, -1, 0]
+dx = [1, 0, -1, 0]
+dy = [0, 1, 0, -1]
 
 
 def bfs():
