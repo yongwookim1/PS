@@ -27,8 +27,6 @@ def bfs(queue, visited):
                 if graph[nx][ny] == ".":
                     visited[nx][ny] = True
                     queue.append((nx, ny))
-                elif graph[nx][ny] == "F":
-                    return True
     return False
 
 
