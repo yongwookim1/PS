@@ -9,15 +9,8 @@ dy = [0, 0, -1, 1]
 
 st = 0
 while True:
-    result = []
-    for i in range(n):
-        for j in range(m):
-            if graph[i][j] == 0:
-                result.append(True)
-            else:
-                result.append(False)
-                break
-    if all(result):
+    result = [element for sublist in graph for element in sublist]
+    if all(element == 0 for element in result):
         print(st)
         break
 
