@@ -2,10 +2,6 @@ from collections import deque
 
 n, m = map(int, input().split())
 
-if n == 1 and m == 1:
-    print("KAKTUS")
-    exit()
-
 start, water = 0, []
 
 graph = []
