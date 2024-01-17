@@ -17,13 +17,11 @@ dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
 queue = deque()
-if start:
-    queue.append(start)
+queue.append(start)
 
 tq = deque()
-if water:
-    for i in water:
-        tq.append(i)
+for i in water:
+    tq.append(i)
 
 
 def flood(queue, tq, visited1, visited2):
