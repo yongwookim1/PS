@@ -45,7 +45,6 @@ def bfs():
                     flag = False
                     for p in range(n):
                         if flag:
-                            flag = False
                             break
                         for q in range(m):
                             if graph[p][q] == graph[nx][ny] and (p, q) != (nx, ny):
