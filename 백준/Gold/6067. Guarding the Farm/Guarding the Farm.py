@@ -35,10 +35,6 @@ for i in range(n):
             queue = deque()
             queue.append((i, j))
             visited[i][j] = True
-            # print(graph[i][j])
-            # print(bfs(queue, graph[i][j]))
-            # print(visited)
             st += bfs(queue, graph[i][j])
-
 
 print(st)
