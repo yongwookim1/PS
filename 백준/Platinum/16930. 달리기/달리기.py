@@ -1,30 +1,44 @@
 from collections import deque
- 
-dx = [0, 0, 1, -1]
-dy = [1, -1, 0, 0]
- 
-N, M, K = map(int, input().split()) # N:세로 M:가로, K: step
-D = [list(input()) for _ in range(N)]
-sx, sy, ex, ey = map(int, input().split())
-sx -= 1; sy -= 1; ex -= 1; ey -=1
-check = [[float('inf')]*M for _ in range(N)]
-q = deque()
-q.append((sx, sy))
-check[sx][sy] = 0
- 
-while q:
-    x, y = q.popleft()
+
+n, m, k = map(int, input().split())
+
+graph = [list(input()) for _ in range(n)]
+
+x1, x2, e1, e2 = map(int, input().split())
+
+x1, x2, e1, e2 = x1 - 1, x2 - 1, e1 - 1, e2 - 1
+
+queue = deque()
+queue.append((x1, x2))
+
+visited = [[float("inf")] * m for _ in range(n)]
+visited[x1][x2] = 0
+
+dx = [0, 0, -1, 1]
+dy = [-1, 1, 0, 0]
+
+
+while queue:
+    y, x = queue.popleft()
     for i in range(4):
-        nx, ny = x + dx[i], y + dy[i]
+        nx = x + dx[i]
+        ny = y + dy[i]
         nk = 1
-        while nk <= K and 0 <= nx < N and 0 <= ny < M and D[nx][ny] != '#' and check[nx][ny] > check[x][y]:
-            if check[nx][ny] == float('inf'):
-                q.append((nx, ny))
-                check[nx][ny] = check[x][y] + 1
+        while (
+            nk <= k
+            and 0 <= nx < m
+            and 0 <= ny < n
+            and graph[ny][nx] != "#"
+            and visited[ny][nx] > visited[y][x]
+        ):
+            if visited[ny][nx] == float("inf"):
+                queue.append((ny, nx))
+                visited[ny][nx] = visited[y][x] + 1
             nx += dx[i]
             ny += dy[i]
             nk += 1
-if check[ex][ey] == float('inf'):
+
+if visited[e1][e2] == float("inf"):
     print(-1)
 else:
-    print(check[ex][ey])
+    print(visited[e1][e2])
