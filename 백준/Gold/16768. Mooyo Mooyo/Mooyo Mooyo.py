@@ -1,13 +1,8 @@
 from collections import deque
 
-n, k = map(int, input().split())
 
-graph = [list(map(int, input())) for _ in range(n)]
-
-
-def disappear(queue, visited, color):
+def disappear(queue: deque, visited: list, color: int, n: int, k: int, graph: list):
     ct = 1
-    flag = False
     tq = deque()
     tq.append(queue[0])
     while queue:
@@ -23,11 +18,11 @@ def disappear(queue, visited, color):
     if ct >= k:
         for i, j in tq:
             graph[i][j] = 0
-        flag = True
-    return flag
+        return True
+    return False
 
 
-def fall():
+def fall(graph, n):
     for i in range(10):
         st = 0
         for j in range(n - 1, -1, -1):
@@ -37,23 +32,28 @@ def fall():
                 graph[j][i], graph[j + st][i] = 0, graph[j][i]
 
 
-while True:
-    flag = False
-    for i in range(n):
-        for j in range(10):
-            if graph[i][j] != 0:
-                queue = deque()
-                queue.append((i, j))
-                visited = [[False] * 10 for _ in range(n)]
-                visited[i][j] = True
-                r = disappear(queue, visited, graph[i][j])
-                if not r:
-                    continue
-                else:
-                    flag = True
-    if not flag:
-        for i in graph:
-            print(*i, sep="")
-        break
-    else:
-        fall()
+def main():
+    n, k = map(int, input().split())
+    graph = [list(map(int, input())) for _ in range(n)]
+    while True:
+        flag = False
+        for i in range(n):
+            for j in range(10):
+                if graph[i][j] != 0:
+                    queue = deque()
+                    queue.append((i, j))
+                    visited = [[False] * 10 for _ in range(n)]
+                    visited[i][j] = True
+                    r = disappear(queue, visited, graph[i][j], n, k, graph)
+                    if r:
+                        flag = True
+        if flag:
+            fall(graph, n)
+        else:
+            for i in graph:
+                print(*i, sep="")
+            break
+
+
+if __name__ == "__main__":
+    main()
