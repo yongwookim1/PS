@@ -59,24 +59,16 @@ def go_to_sp(queue: deque, visited: list):
 def go_to_ep(queue: deque, visited: list, ep: tuple):
     while queue:
         y, x, d, f, af = queue.popleft()
-        for dx, dy in [(0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)]:
+        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
             nx, ny = x + dx, y + dy
             if 0 <= nx < n and 0 <= ny < n and visited[ny][nx] == False and f > 0:
                 visited[ny][nx] = True
-                if dx == 0 and dy == 0:
-                    if graph[ny][nx] == 0 and ep == (ny, nx):
-                        queue = deque()
-                        queue.append((ny, nx, d, f + ((af + 1) * 2)))
-                        return queue
-                    if graph[ny][nx] == 0:
-                        queue.append((ny, nx, d, f, af))
-                else:
-                    if graph[ny][nx] == 0 and ep == (ny, nx):
-                        queue = deque()
-                        queue.append((ny, nx, d + 1, f - 1 + ((af + 1) * 2)))
-                        return queue
-                    elif graph[ny][nx] == 0:
-                        queue.append((ny, nx, d + 1, f - 1, af + 1))
+                if graph[ny][nx] == 0 and ep == (ny, nx):
+                    queue = deque()
+                    queue.append((ny, nx, d + 1, f - 1 + ((af + 1) * 2)))
+                    return queue
+                elif graph[ny][nx] == 0:
+                    queue.append((ny, nx, d + 1, f - 1, af + 1))
     return False
 
 
@@ -89,14 +81,13 @@ while True:
         visited = [[False] * n for _ in range(n)]
         r2 = go_to_ep(queue, visited, ep)
         queue = r2
-        if r2 == False:
-            print(-1)
-            break
-        else:
+        if r2:
             if not start_end:
                 print(queue[0][3])
                 break
+        else:
+            print(-1)
+            break
     else:
         print(-1)
         break
-    queue = r2
