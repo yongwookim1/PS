@@ -17,7 +17,7 @@ queue.append((s1 - 1, s2 - 1, 0, f))
 
 def go_to_sp(queue, visited):
     tq = deque()
-    lim = float("inf")
+    lim = 500000
     while queue:
         y, x, d, f = queue.popleft()
         for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1), (0, 0)]:
