@@ -1,7 +1,7 @@
 from collections import deque
 
 
-def bfs(queue, visited, doc):
+def bfs(queue: deque, visited: list, doc: list):
     while queue:
         y, x = queue.popleft()
         if 0 <= x < m and 0 <= y < n and not visited[y][x]:
@@ -57,6 +57,7 @@ for _ in range(int(input())):
                 if graph[i][j] != "*":
                     queue.append((i, j))
                     bfs(queue, visited, doc)
+
     tql = []
     while tq:
         if list(tq) in tql:
@@ -66,6 +67,5 @@ for _ in range(int(input())):
         for _ in range(l):
             queue = deque()
             queue.append(tq.popleft())
-            # visited = [[False] * m for _ in range(n)]
             bfs(queue, visited, doc)
-    print(sum(doc))
+    print(len(doc))
