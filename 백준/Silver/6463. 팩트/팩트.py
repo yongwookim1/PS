@@ -9,7 +9,7 @@ while True:
                     r //= 10
                 else:
                     break
-            r = int(str(r)[-100:])
+            r = int(str(r)[-10:])
         print(f"{n:>5} -> {str(r)[-1]}")
     except:
         break
